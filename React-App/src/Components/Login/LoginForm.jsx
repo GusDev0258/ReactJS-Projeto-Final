@@ -2,17 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Input from "../Form/Input";
 import Button from "../Form/Button";
+import useForm from "../../Hooks/useForm";
 
 const LoginForm = () => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
 
-  const handleUsername = ({ target }) => {
-    setUsername(target.value);
-  };
-  const handlePassword = ({ target }) => {
-    setPassword(target.value);
-  };
+  const username = useForm();
+  const password = useForm();
+
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -34,8 +30,8 @@ const LoginForm = () => {
     <section>
       <h1>Login</h1>
       <form action="" onSubmit={handleLoginSubmit}>
-        <Input label="User" type="text" name="username"/>
-        <Input label="Password" type="password" name="password"/>
+        <Input label="User" type="text" name="username" {...username}/>
+        <Input label="Password" type="password" name="password" {...password}/>
         <Button>
           Log in
         </Button>
